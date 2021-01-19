@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 //	字符串，Go语言中字符串使用双引号包裹的
 //	Go语言中单引号包裹的是字符
@@ -45,4 +48,24 @@ func main() {
 	fmt.Println(ss)
 	ss1 := fmt.Sprintf("%s%s", name, world)
 	fmt.Println(ss1)
+
+	// 字符串分割
+	ret := strings.Split(s3, "\\")
+	fmt.Println(ret)
+
+	// 判断是否包含
+	fmt.Println(strings.Contains(ss, "理何"))
+	fmt.Println(strings.Contains(ss, "理想"))
+
+	//	前缀、后缀
+	fmt.Println(strings.HasPrefix(ss, "理想"))
+	fmt.Println(strings.HasSuffix(ss, "理想"))
+
+	//	查看字串出现的位置
+	s4 := "abcdeb"
+	fmt.Println(strings.Index(s4, "c"))
+	fmt.Println(strings.LastIndex(s4, "b"))
+
+	//	拼接
+	fmt.Println(strings.Join(ret, "+"))
 }
