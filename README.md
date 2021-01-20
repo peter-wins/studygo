@@ -1,1 +1,1 @@
-#Studygo
+#Study Go
