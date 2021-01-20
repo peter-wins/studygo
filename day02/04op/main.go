@@ -26,4 +26,61 @@ func main() {
 	fmt.Println(a > b)
 	fmt.Println(a <= b)
 	fmt.Println(a < b)
+
+	//逻辑运算符
+	//如果年龄大于18岁且小于60
+	age := 22
+	if age > 18 && age < 60 {
+		fmt.Println("苦逼上班")
+	} else {
+		fmt.Println("不用上班！")
+	}
+	//如果年龄小于18岁 或者大于60岁
+	if age < 18 || age > 60 {
+		fmt.Println("不用上班")
+	} else {
+		fmt.Println("苦逼上班")
+	}
+
+	//not取反，原来为真就为假，原来为假就为真
+	isMarried := false
+	fmt.Println(isMarried)  //false
+	fmt.Println(!isMarried) //true
+
+	//位运算符 针对的二进制数
+	//5的二进制表示：101
+	//2的二进制表示： 10
+
+	// &：按位与(两位均为1才为1)
+	fmt.Println(5 & 2)
+	// |:按位或(两位有1个1就为1)
+	fmt.Println(5 | 2) // 111 -->7
+	// ^:按位异或(两位不一样则为1)
+	fmt.Println(5 ^ 2) // 111 -->7
+	// <<将二进制位左移指定的位数
+	fmt.Println(5 << 1)  // 1010 -->10
+	fmt.Println(1 << 10) //10000000000 -->1024
+	// <<将二进制位又移指定的位数
+	fmt.Println(5 >> 2)  // 1 -->1
+	var m = int8(1)      //只能存8位
+	fmt.Println(m << 10) //10000000000
+
+	//实际应用
+	//IP地址操作 192.168.1.1
+	//权限操作
+
+	//赋值运算符 用来给变量赋值的
+	var x int
+	x = 10
+	x += 1  // x = x + 1
+	x -= 1  // x = x - 1
+	x *= 2  // x = x * 2
+	x /= 2  // x = x / 2
+	x %= 2  // x = x % 2
+	x <<= 1 // x = x << 1
+	x >>= 1 // x = x >> 1
+	x &= 1  // x = x & 1
+	x |= 1  // x = x | 1
+	x ^= 1  // x = x ^ 1
+	fmt.Println(x)
 }
