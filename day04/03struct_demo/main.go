@@ -20,4 +20,15 @@ func main() {
 	fmt.Println(p)
 	fmt.Printf("%T\n", p)
 	fmt.Println(p.name)
+
+	//匿名结构体：多用于临时场景
+
+	var s struct {
+		x string
+		y int
+	}
+	s.x = "哈哈"
+	s.y = 100
+
+	fmt.Printf("type:%T value:%v\n", s, s)
 }
