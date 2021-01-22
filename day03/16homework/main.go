@@ -25,8 +25,8 @@ var (
 
 func dispatchCoin() (left int) {
 	//1.依次拿到每个人的名字
-	for _, name := range users {
-		for _, c := range name { //2.拿到每个人的名字根据规则分配金币
+	for _, name := range users { //2.拿到每个人的名字根据规则分配金币
+		for _, c := range name { //遍历名字
 			switch c {
 			case 'e', 'E':
 				distribution[name]++ //2.1 每个人分的金币数应该保存到distribution中
