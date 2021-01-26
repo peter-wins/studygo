@@ -79,9 +79,11 @@ type mover interface {
 
 `x.(T)`
 
+![image-20210126161427794](C:\Users\97152\AppData\Roaming\Typora\typora-user-images\image-20210126161427794.png)
+
 使用`switch`做类型断言
 
-
+![image-20210126161441691](C:\Users\97152\AppData\Roaming\Typora\typora-user-images\image-20210126161441691.png)
 
 
 
@@ -90,6 +92,53 @@ type mover interface {
 ##### 文件操作
 
 ------
+
+###### 打开文件和关闭文件
+
+![image-20210126163424536](C:\Users\97152\AppData\Roaming\Typora\typora-user-images\image-20210126163424536.png)
+
+###### 读文件
+
+`file.Read()`
+
+Read方法定义如下：
+
+```go
+func (f *File) Read(b []byte) (n int, err error)
+```
+
+`bufio`
+
+bufio是在file的基础上封装了一层API，支持更多的功能。
+
+`ioutil`
+
+`io/ioutil`包的`ReadFile`方法能够读取完整的文件，只需要将文件名作为参数传入
+
+###### 写文件
+
+`os.OpenFile()`函数能够以指定模式打开文件，从而实现文件写入相关功能。
+
+```go
+func OpenFile(name string, flag int, perm FileMode) (*File, error) {
+	...
+}
+```
+
+其中：
+
+`name`：要打开的文件名 `flag`：打开文件的模式。 模式有以下几种：
+
+| 模式          | 含义     |
+| :------------ | :------- |
+| `os.O_WRONLY` | 只写     |
+| `os.O_CREATE` | 创建文件 |
+| `os.O_RDONLY` | 只读     |
+| `os.O_RDWR`   | 读写     |
+| `os.O_TRUNC`  | 清空     |
+| `os.O_APPEND` | 追加     |
+
+`perm`：文件权限，一个八进制数。r（读）04，w（写）02，x（执行）01。
 
 #### 今日内容
 
