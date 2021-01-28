@@ -26,43 +26,45 @@ func NewLog(levelStr string) Logger {
 func (l Logger) enable(logLevel LogLevel) bool {
 	return logLevel >= l.Level
 }
-func log(lv LogLevel, msg string) {
+
+func log(lv LogLevel, format string, a ...interface{}) {
+	msg := fmt.Sprintf(format, a...)
 	now := time.Now()
 	funcName, fileName, lineNo := getInfo(3)
 	fmt.Printf("[%s] - [%s] [%s:%s:%d] %s\n", now.Format("2006-01-02 15:04:05"), getLogString(lv), fileName, funcName, lineNo, msg)
 }
 
 // Debug 构造Debug日志级别的方法
-func (l Logger) Debug(msg string) {
+func (l Logger) Debug(format string, a ...interface{}) {
 	if l.enable(DEBUG) {
-		log(DEBUG, msg)
+		log(DEBUG, format, a...)
 	}
 }
 
 // Info 构造Info日志级别的方法
-func (l Logger) Info(msg string) {
+func (l Logger) Info(format string, a ...interface{}) {
 	if l.enable(INFO) {
-		log(INFO, msg)
+		log(INFO, format, a...)
 	}
 }
 
 // Warning 构造Warning日志级别的方法
-func (l Logger) Warning(msg string) {
+func (l Logger) Warning(format string, a ...interface{}) {
 	if l.enable(WARNING) {
-		log(WARNING, msg)
+		log(WARNING, format, a...)
 	}
 }
 
 // Error 构造Error日志级别的方法
-func (l Logger) Error(msg string) {
+func (l Logger) Error(format string, a ...interface{}) {
 	if l.enable(ERROR) {
-		log(ERROR, msg)
+		log(ERROR, format, a...)
 	}
 }
 
 // Fatal 构造Fatal日志级别的方法
-func (l Logger) Fatal(msg string) {
+func (l Logger) Fatal(format string, a ...interface{}) {
 	if l.enable(FATAL) {
-		log(FATAL, msg)
+		log(FATAL, format, a...)
 	}
 }
