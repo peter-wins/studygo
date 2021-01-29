@@ -8,6 +8,8 @@ import (
 )
 
 //往文件里写日志
+
+// FileLogger 文件日志结构体
 type FileLogger struct {
 	Level       LogLevel
 	filePath    string //日志保存的路径
