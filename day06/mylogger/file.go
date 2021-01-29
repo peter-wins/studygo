@@ -36,6 +36,7 @@ func NewFileLogger(levelStr, fp, fn string, maxSize int64) *FileLogger {
 	return fl
 }
 
+// 根据指定的日志文件路径和文件名打开日志
 func (f *FileLogger) initFile() error {
 	fullFileName := path.Join(f.filePath, f.fileName)
 	fileObj, err := os.OpenFile(fullFileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
@@ -56,10 +57,12 @@ func (f *FileLogger) initFile() error {
 	return nil
 }
 
+// 判断是否记录该日志
 func (f *FileLogger) enable(logLevel LogLevel) bool {
 	return logLevel >= f.Level
 }
 
+// 判断文件是否需要切割
 func (f *FileLogger) checkSize(file *os.File) bool {
 	fileInfo, err := file.Stat()
 	if err != nil {
@@ -70,6 +73,7 @@ func (f *FileLogger) checkSize(file *os.File) bool {
 	return fileInfo.Size() >= f.maxFileSize
 }
 
+// 切割文件
 func (f *FileLogger) splitFile(file *os.File) (*os.File, error) {
 	//需要切割日志文件
 	newStr := time.Now().Format("20060102030405000")
@@ -94,6 +98,7 @@ func (f *FileLogger) splitFile(file *os.File) (*os.File, error) {
 	return fileObj, nil
 }
 
+// 记录日志的方法
 func (f *FileLogger) log(lv LogLevel, format string, a ...interface{}) {
 	if f.enable(lv) {
 		now := time.Now()
