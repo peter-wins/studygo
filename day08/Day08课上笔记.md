@@ -48,7 +48,7 @@ Go1.5之后默认就是操作系统的逻辑核心数，默认跑满cpu。
 
 ### channel
 
-为什么需要channel？
+#### 为什么需要channel？
 
 通过channel实现多个goroutine之间的通信。
 
@@ -56,14 +56,42 @@ Go1.5之后默认就是操作系统的逻辑核心数，默认跑满cpu。
 
 channel是一种类型，一种引用类型， make函数初始化之后才能用(slice map channel)
 
+#### channel的声明
+
+`var ch chan 元素类型`
+
+#### channel的初始化
+
+`ch = make(chan 元素类型，[缓冲区大小])`
+
+#### channel的操作
+
+- 发送：`ch <- 100`
+- 接受：`x := <- ch`
+- 关闭：`close(ch)`
+
+#### 带缓冲区的通道和不带缓冲区的通道：
+
+快递员送快递的示例：有缓冲区就是有快递柜
+
+从通道中取值：
+
+#### 单项通道：
+
+通常是用作函数的参数，只读通道`<-chan int`和只写通道`chan<- int`
+
+#### 通道的各种考虑情况
+
+![channel异常总结](https://www.liwenzhou.com/images/Go/concurrence/channel01.png)
 
 
-channel的声明：`var ch chan 元素类型`
 
-channel的初始化：`ch = make(chan 元素类型，[缓冲区大小])`
+### select
 
-channel的操作：
+同一时刻有多个通道要操作的场景，使用`select`.
 
-- 发送：ch <- 100
-- 接受：x := <- ch
-- 关闭：close(ch)
+使用`select`语句能提高代码的可读性。
+
+- 可以处理一个或者多个channel的发送/接受操作
+- 如果多个`case`同时满足，`select`会随机选择一个
+- 对于没有`case`的`select{}`会一直等待，可用于阻塞main函数
