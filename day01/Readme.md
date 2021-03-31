@@ -70,7 +70,43 @@ iota：实现枚举
 
 2、`const`中每新增一行常量声明，`iota`累加1
 
+## 流程控制
 
+### if判断
 
+``` go
+var age = 19
+    if age > 18 {
+        fmt.Println("成年了")
+    }else if age > 7 {
+        fmt.Println("上小学")
+    }else {
+        fmt.Println("最快乐的时光")
+    }
+```
 
+### for循环
+
+标准for循环
+
+``` go
+for i := 0; i < 10; i++ {
+    fmt.Println(i)
+}
+```
+
+``` go
+var i = 0
+for ; i < 10; i++{
+    fmt.Println(i)
+}
+```
+
+```go
+var j = 0
+for j < 10 {
+    fmt.Println(j)
+    j++
+}
+```
 
