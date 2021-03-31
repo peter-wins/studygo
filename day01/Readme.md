@@ -87,7 +87,7 @@ var age = 19
 
 ### for循环
 
-标准for循环
+for循环各种写法
 
 ``` go
 for i := 0; i < 10; i++ {
@@ -107,6 +107,20 @@ var j = 0
 for j < 10 {
     fmt.Println(j)
     j++
+}
+```
+
+```go
+for {
+    fmt.Println("无限循环")
+}
+```
+
+```go
+s := "hello"
+fmt.Println(len(s)) // 5
+for i, v := range s {
+    fmt.Println(i,v)
 }
 ```
 
