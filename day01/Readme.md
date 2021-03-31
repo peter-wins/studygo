@@ -120,7 +120,10 @@ for {
 s := "hello"
 fmt.Println(len(s)) // 5
 for i, v := range s {
-    fmt.Println(i,v)
+    fmt.Printf("%d %c"\n, i,v)
+}
+//如果不打印索引，用_(哑元变量)来接收
+for _, v := range s {
+    fmt.Printf("%c"\n, v)
 }
 ```
-
