@@ -1,3 +1,5 @@
+
+
 # Day02上课总结
 
 ## 运算符
@@ -50,8 +52,6 @@ func main(){
 }
 ```
 
-
-
 数组的初始化：
 
 ```go
@@ -69,14 +69,12 @@ func main(){
 ```go
 var a1 [...][2]int	// [[1,2] [3,4] [5,6]]
 a1 = [...][2]int{
-    [2]int{1,2},
-    [2]int{3,4},
-    [2]int{5,6},
+    [2]int{1, 2},
+    [2]int{3, 4},
+    [2]int{5, 6},
 }
 // 多维数组只有最外层可以用...
 ```
-
-
 
 ## 切片(Slice)
 
@@ -110,8 +108,38 @@ var s1 []int
 s1 = append(s1,1)	//自动初始化切片 添加元素
 ```
 
-
-
 ## 指针
 
+只需要记住两个符号：`&` 和 `*`  Go语言里面的指针只能读不能修改，不能修改指针变量指向的地址
+
+```go
+addr := "沙河"
+addrP := &addr	// 查看内存地址
+addrV := *addrP // 根据内存地址找值
+```
+
 ## map
+
+map存储的是键值对
+
+```go
+var m1 map[string]int			// 定义一个map
+m1 = make(map[string]int, 10)	// make初始化map
+m1["shasha"] = 100
+fmt.Println("ji")				// 如果key不存在返回的是value对应的零值
+```
+
+```go
+delete(m1, "lidad") // 删除的key 不存在什么都不干
+```
+
+```go
+// 如果返回的是布尔值，我们通常用ok去接收
+score, ok := m1["ji"]
+if !ok {
+    fmt.Println("没有ji这个人")
+}else {
+    fmt.Println("ji的分数是"，score)
+}
+```
+
