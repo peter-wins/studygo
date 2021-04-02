@@ -149,5 +149,3 @@ if err != nil {
 fmt.Println(p2)
 ```
 
-### JSON序列化与反序列化
-
