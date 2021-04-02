@@ -71,7 +71,39 @@ type mover interface {
 
 `X.(T)`
 
+```go
+func main() {
+    var a interface{}	// 定义一个空接口变量
+    a = 100
+    // 如何判断a保存的值的具体类型是什么
+    // 类型断言
+    v, ok := a.(int8)
+    if ok {
+        fmt.Println("猜对了，a是int8", v)
+    }else {
+        fmt.Println("猜错了")
+    }
+}
+```
+
 使用`switch`来做类型断言
+
+```go
+switch v2 := a.(type) {
+case int8:
+    fmt.Println("int8", v2)
+case int16:
+    fmt.Println("int16", v2)
+case string:
+    fmt.Println("string", v2)
+case int:
+    fmt.Println("int", v2)
+default:
+    fmt.Println("滚~")
+}
+```
+
+
 
 ### 文件操作
 
