@@ -103,7 +103,20 @@ default:
 }
 ```
 
-
-
 ### 文件操作
 
+#### [打开文件和关闭文件](https://github.com/peter-wins/studygo/blob/master/day05/12file_open/main.go)
+
+```go
+os.Open("./main.go")
+```
+
+```go
+defer fileObj.Close()
+```
+
+
+
+#### 读文件
+
+#### 写文件
