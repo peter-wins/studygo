@@ -137,4 +137,4 @@ func OpenFile(name string, flag int, perm FileMode) (*File, error) {
 }
 ```
 
-其中： `name` ：要打开的文件名 `flag`：打开文件的模式 `perm`：文件权限，一个八进制数
+其中： `name` ：要打开的文件名 `flag`：打开文件的模式 `perm`：文件权限，一个八进制数 
