@@ -112,11 +112,29 @@ os.Open("./main.go")
 ```
 
 ```go
-defer fileObj.Close()
+defer file.Close()
 ```
-
-
 
 #### 读文件
 
+Read方法：
+
+```go
+func (f *File) Read(b []byte) (n int, err error)
+```
+
+`bufio`方法
+
+`ioutil`方法读取整个文件
+
 #### 写文件
+
+`os.OpenFile()`函数能够以指定模式打开文件，从而实现文件写入相关功能
+
+```go
+func OpenFile(name string, flag int, perm FileMode) (*File, error) {
+    ...
+}
+```
+
+其中： `name` ：要打开的文件名 `flag`：打开文件的模式 `perm`：文件权限，一个八进制数
