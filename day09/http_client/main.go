@@ -12,7 +12,7 @@ func main() {
 		fmt.Printf("get url failed, err:%v\n", err)
 		return
 	}
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := ioutil.ReadAll(resp.Body) // 我在客户端读出服务端返回的响应的body
 	if err != nil {
 		fmt.Printf("read resp.body failed, err:%v\n", err)
 		return
