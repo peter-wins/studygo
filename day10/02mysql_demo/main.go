@@ -38,7 +38,7 @@ type user struct {
 func queryOne(id int) {
 	var u1 user
 	// 1.写查询单挑记录的sql语句
-	sqlStr := `select id,name,age from user where id=?;` // ？占位符
+	sqlStr := `select id, name, age from user where id=?;` // ？占位符
 	// 2.执行
 	rowObj := db.QueryRow(sqlStr, id) // 从连接池里拿一个出来去数据库查询单条记录
 	// 3.拿到结果
@@ -48,17 +48,91 @@ func queryOne(id int) {
 	fmt.Printf("u1:%#v\n", u1)
 }
 
-// 插入
-func insert() {
-
+// 多行查询
+func querryMore(n int) {
+	// SQL语句
+	sqlStr := `select id, name, age from user where id > ?;`
+	// 执行
+	rows, err := db.Query(sqlStr, n)
+	if err != nil {
+		fmt.Printf("exec %s query failed,err:%v\n", sqlStr, err)
+		return
+	}
+	// 关闭rows
+	defer rows.Close()
+	// 循环取值
+	for rows.Next() {
+		var u1 user
+		err := rows.Scan(&u1.id, &u1.name, &u1.age)
+		if err != nil {
+			fmt.Printf("scan failed, err%v\n", err)
+			return
+		}
+		// 4.打印结果
+		fmt.Printf("u1:%#v\n", u1)
+	}
 }
 
+// 插入数据
+func insert() {
+	// 写SQL语句
+	sqlStr := `insert into user(name,age) values("莉莉",30);`
+	// 执行 exec
+	ret, err := db.Exec(sqlStr)
+	if err != nil {
+		fmt.Printf("insert failed, err:%v\n", err)
+		return
+	}
+	// 如果是插入数据的操作，能够拿到插入数据的id
+	id, err := ret.LastInsertId()
+	if err != nil {
+		fmt.Printf("get id failed, err:%v\n", err)
+		return
+	}
+	fmt.Printf("id:%d", id)
+}
+
+// 更新数据
+func updateRow(newAge int, id int) {
+	sqlStr := `update user set age=? where id=?;`
+	ret, err := db.Exec(sqlStr, newAge, id)
+	if err != nil {
+		fmt.Printf("update data failed, err:%v\n", err)
+		return
+	}
+	n, err := ret.RowsAffected()
+	if err != nil {
+		fmt.Printf("get id failed, err:%v\n", err)
+		return
+	}
+	fmt.Printf("更新了%d行数据\n", n)
+}
+
+// 删除数据
+func deleteData(id int) {
+	sqlStr := `delete from user where id = ?;`
+	ret, err := db.Exec(sqlStr, id)
+	if err != nil {
+		fmt.Printf("delete data falied, err%v\n", err)
+		return
+	}
+	n, err := ret.RowsAffected()
+	if err != nil {
+		fmt.Printf("get id failed, err:%v\n", err)
+		return
+	}
+	fmt.Printf("成功删除%d行数据\n", n)
+}
 func main() {
 	err := initDB()
 	if err != nil {
 		fmt.Printf("Init DB failed, err:%v\n", err)
 	}
 	fmt.Println("连接数据库成功！")
-	queryOne(2)
+	//queryOne(1)
+	//querryMore(2)
+	//insert()
+	//updateRow(43, 4)
+	deleteData(6)
 
 }
