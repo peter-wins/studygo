@@ -56,7 +56,7 @@ func insert() {
 func main() {
 	err := initDB()
 	if err != nil {
-		fmt.Printf("init DB failed, err:%v\n", err)
+		fmt.Printf("Init DB failed, err:%v\n", err)
 	}
 	fmt.Println("连接数据库成功！")
 	queryOne(2)
