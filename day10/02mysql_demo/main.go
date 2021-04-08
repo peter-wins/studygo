@@ -123,6 +123,38 @@ func deleteData(id int) {
 	}
 	fmt.Printf("成功删除%d行数据\n", n)
 }
+
+// 预处理方式插入多条数据
+
+func prepareInsert() {
+	sqlStr := `insert into user(name,age) values(?,?);`
+	stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+		fmt.Printf("prepare failed, err:%v\n", err)
+		return
+	}
+	defer stmt.Close()
+	// 后续只需要拿到ｓｔｍｔ去执行一些操作
+	var m = map[string]int{
+		"小刘":    26,
+		"小章":    36,
+		"大郎":    20,
+		"张三":    34,
+		"猴子":    32,
+		"八戒":    28,
+		"三藏":    39,
+		"小猪佩奇":  18,
+		"龙五":    34,
+		"诸葛":    25,
+		"牛姐":    38,
+		"集美":    26,
+		"波多野结衣": 29,
+	}
+	for k, v := range m {
+		stmt.Exec(k, v)
+	}
+}
+
 func main() {
 	err := initDB()
 	if err != nil {
@@ -133,6 +165,7 @@ func main() {
 	//querryMore(2)
 	//insert()
 	//updateRow(43, 4)
-	deleteData(6)
+	// deleteData(6)
+	prepareInsert()
 
 }
