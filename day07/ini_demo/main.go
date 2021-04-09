@@ -49,7 +49,7 @@ func loadIni(fileName string, data interface{}) (err error) {
 	lineSlice := strings.Split(string(b), "\r\n")
 	fmt.Printf("%#v\n", lineSlice)
 	// 2. 一行一行得到数据
-	for idx, line := range lineSlice {
+	for _, line := range lineSlice {
 		// 去掉字符串首尾的空格
 		line = strings.TrimSpace(line)
 		// 2.1 如果是注释就跳过
