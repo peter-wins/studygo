@@ -1,13 +1,13 @@
 package conf
 
 type AppConf struct {
-	KafkaConf `ini:"kafka"`
-	PathConf  `int:"path"`
+	KafkaConf `mapstructure:"kafka"`
+	PathConf  `mapstructure:"path"`
 }
 type KafkaConf struct {
-	Address string `ini:"address"`
-	Topic   string `ini:"topic"`
+	Address string `mapstructure:"address"`
+	Topic   string `mapstructure:"topic"`
 }
 type PathConf struct {
-	Logjam string `ini:"logjam"`
+	Logjam string `mapstructure:"logjam"`
 }
