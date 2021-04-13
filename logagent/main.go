@@ -12,7 +12,6 @@ import (
 )
 
 var (
-	//cfg = new(conf.AppConf)
 	cfg = new(conf.AppConf)
 )
 
