@@ -29,8 +29,8 @@ func run() {
 }
 func main() {
 	//0、加载配置文件
-	viper.SetConfigFile("config.ini") // 指定配置文件路径
-	err := viper.ReadInConfig()       // 读取配置信息
+	viper.SetConfigFile("conf/config.ini") // 指定配置文件路径
+	err := viper.ReadInConfig()            // 读取配置信息
 	if err != nil {
 		panic(fmt.Errorf("unmarshal conf failed, err:%s\n", err))
 	}
