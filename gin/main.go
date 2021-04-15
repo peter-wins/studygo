@@ -18,6 +18,8 @@ func main(){
 
 	r.GET("/", chapter01.Hello)
 	r.GET("/user", chapter02.User)
+	r.GET("arr", chapter02.ArrController)
+	r.GET("/arr_struct",chapter02.ArrStruct)
 
 	err := r.Run(":8080")
 	if err != nil {
