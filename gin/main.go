@@ -47,6 +47,16 @@ func main(){
 
 	r.GET("/to_user_add3",chapter02.ToUserAdd3)
 	r.POST("/do_user_add3",chapter02.DoUserAdd3)
+	//文件上传
+	r.GET("/to_upload1",chapter02.ToUpload1)
+	r.POST("/do_upload1",chapter02.DoUpload1)
+	//多文件上传
+	r.GET("/to_upload2",chapter02.ToUpload2)
+	r.POST("/do_upload2",chapter02.DoUpload2)
+
+	//ajax文件上传
+	r.GET("/to_upload3",chapter02.ToUpload3)
+	r.POST("/do_upload3",chapter02.DoUpload3)
 
 	err := r.Run(":8080")
 	if err != nil {
