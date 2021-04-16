@@ -7,10 +7,10 @@ import (
 )
 
 type UserInfo struct {
-	Id int
-	Name string
-	Age int
-	Addr string
+	Id int	`form:"id"`
+	Name string	`form:"name"`
+	Age int	`form:"age"`
+	Addr string	`form:"addr"`
 }
 // User 结构体渲染
 func User (ctx *gin.Context){
@@ -111,7 +111,7 @@ func DoUserAdd(ctx *gin.Context){
 
 	ctx.String(http.StatusOK, "添加成功~")
 }
-// ToUserAdd2 Ajax提交
+// ToUserAdd2 Ajax获取post请求数据
 func ToUserAdd2(ctx *gin.Context){
 	ctx.HTML(http.StatusOK,"chapter02/user_add2.html",nil)
 }
@@ -125,10 +125,23 @@ func DoUserAdd2(ctx *gin.Context) {
 	fmt.Println(passWord)
 	fmt.Println(age)
 
-	m := map[string]interface{}{
-		"code":200,
-		"msg":"添加成功~",
-	}
+	//m := map[string]interface{}{
+	//	"code":200,
+	//	"msg":"添加成功~",
+	//}
+	//
+	//ctx.JSON(http.StatusOK,m)
+	ctx.JSON(http.StatusOK,gin.H{"code":200,"msg":"添加成功~"})
+}
+func ToUserAdd3(ctx *gin.Context){
+	ctx.HTML(http.StatusOK,"chapter02/user_add3.html",nil)
+}
+func DoUserAdd3(ctx *gin.Context) {
 
-	ctx.JSON(http.StatusOK,m)
+	var p2 UserInfo
+	err := ctx.ShouldBind(&p2)
+	fmt.Println(err)
+	fmt.Println(p2)
+
+	ctx.String(http.StatusOK,"绑定成功")
 }

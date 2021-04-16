@@ -45,6 +45,9 @@ func main(){
 	r.GET("/to_user_add2",chapter02.ToUserAdd2)
 	r.POST("/do_user_add2",chapter02.DoUserAdd2)
 
+	r.GET("/to_user_add3",chapter02.ToUserAdd3)
+	r.POST("/do_user_add3",chapter02.DoUserAdd3)
+
 	err := r.Run(":8080")
 	if err != nil {
 		fmt.Println("start failed")
