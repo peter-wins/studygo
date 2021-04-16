@@ -1,4 +1,4 @@
-{{ define "chapter02/arr_struct.html"}}
+{{ define "chapter02/arr_struct.html" }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +14,16 @@
     {{.Addr}}
     <br>
 {{end}}
+
 <br>
 <!--第二种循环方式-->
+{{range $i,$v :=.}}
+    {{$v.Id}}
+    {{$v.Name}}
+    {{$v.Age}}
+    {{$v.Addr}}
+    <br>
+{{end}}
 
 </body>
 </html>
