@@ -24,6 +24,11 @@ func main(){
 	r.GET("/map_struct", chapter02.MapStruct)
 	r.GET("/slice", chapter02.SliceController)
 
+	r.GET("/param1/:id",chapter02.Param1)
+	r.GET("/param2/*id",chapter02.Param2)
+
+
+
 	err := r.Run(":8080")
 	if err != nil {
 		fmt.Println("start failed")

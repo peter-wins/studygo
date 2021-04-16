@@ -58,8 +58,17 @@ func MapStruct(ctx *gin.Context){
 	}
 	ctx.HTML(http.StatusOK,"chapter02/map_struct.html", mapStruct )
 }
-// slice渲染
+// SliceController slice渲染
 func SliceController (ctx *gin.Context){
 	s1 := []int{1,2,3,4,5,6,7,8}
 	ctx.HTML(http.StatusOK,"chapter02/slice.html",s1)
+}
+// Param1 路径中直接加上参数值
+func Param1(ctx *gin.Context){
+	id := ctx.Param("id")
+	ctx.String(http.StatusOK,"Hello: %s",id)
+}
+func Param2(ctx *gin.Context){
+	id := ctx.Param("id")
+	ctx.String(http.StatusOK,"Hello: %s",id)
 }
