@@ -1,0 +1,46 @@
+{{define "chapter02/user_add2.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+用户登录页面<br>
+<form>
+  用户名： <input type="text" id="username"><br>
+  密&nbsp;码：  <input type="password" id="password"><br>
+  年&nbsp;龄：  <input type="text" id="age"><br>
+    <input type="button" value="提交" id="add_btn">
+
+</form>
+<script>
+  var add_btn = document.getElementById("add_btn")
+  add_btn.onclick = function (){
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var age = document.getElementById("age").value;
+    $.ajax({
+      url: "/do_user_add2",
+      type: "POST",
+      data: {
+        "username":username,
+        "password":password,
+        "age":age
+      },
+      success:function (data){
+        alert(data["code"]);
+        alert(data["msg"])
+      },
+      fail:function (data){
+
+      }
+    })
+  }
+</script>
+
+</body>
+</html>
+{{end}}

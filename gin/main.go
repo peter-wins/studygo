@@ -24,10 +24,26 @@ func main(){
 	r.GET("/map_struct", chapter02.MapStruct)
 	r.GET("/slice", chapter02.SliceController)
 
+	//在浏览器访问http://127.0.0.1:8080/param1/1242
 	r.GET("/param1/:id",chapter02.Param1)
+
+	//在浏览器访问http://127.0.0.1:8080/param2
 	r.GET("/param2/*id",chapter02.Param2)
 
+	//在浏览器访问http://127.0.0.1:8080/query?name=xxx
+	r.GET("query",chapter02.GetQueryData)
 
+	//在浏览器访问http://127.0.0.1:8080/query_arr/?ids=12,34,56
+	r.GET("/query_arr",chapter02.GetQueryArrData)
+
+	//在浏览器访问http://127.0.0.1:8080/query_map?user[name]=xxx&user[age]=19
+	r.GET("/query_map",chapter02.GetQueryMapData)
+
+	r.GET("/to_user_add",chapter02.ToUserAdd)
+	r.POST("/do_user_add",chapter02.DoUserAdd)
+
+	r.GET("/to_user_add2",chapter02.ToUserAdd2)
+	r.POST("/do_user_add2",chapter02.DoUserAdd2)
 
 	err := r.Run(":8080")
 	if err != nil {

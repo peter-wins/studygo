@@ -1,6 +1,7 @@
 package chapter02
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -71,4 +72,63 @@ func Param1(ctx *gin.Context){
 func Param2(ctx *gin.Context){
 	id := ctx.Param("id")
 	ctx.String(http.StatusOK,"Hello: %s",id)
+}
+func GetQueryData(ctx *gin.Context){
+	id := ctx.Query("id")
+	name := ctx.DefaultQuery("name","阿三")
+	fmt.Println(name)
+	ctx.String(http.StatusOK, "Hello: %s", id)
+}
+func GetQueryArrData(ctx *gin.Context){
+	ids := ctx.QueryArray("ids")
+	ctx.String(http.StatusOK, "Hello: %s", ids)
+}
+func GetQueryMapData(ctx *gin.Context){
+	user := ctx.QueryMap("user")
+	ctx.String(http.StatusOK, "Hello: %s", user)
+}
+// ToUserAdd POST请求(用户添加页面)
+func ToUserAdd(ctx *gin.Context){
+	ctx.HTML(http.StatusOK,"chapter02/user_add.html",nil)
+}
+// DoUserAdd 添加用户
+func DoUserAdd(ctx *gin.Context){
+	// PostForm用法
+	userName := ctx.PostForm("username")
+	passWord := ctx.PostForm("password")
+	// DefaultPostForm用法
+	age := ctx.DefaultPostForm("age","19")
+	// PostFormArray用法
+	loves := ctx.PostFormArray("love")
+	// PostFormMap用法
+	users := ctx.PostFormMap("user")
+
+	fmt.Println(userName)
+	fmt.Println(passWord)
+	fmt.Println(loves)
+	fmt.Println(users)
+	fmt.Println(age)
+
+	ctx.String(http.StatusOK, "添加成功~")
+}
+// ToUserAdd2 Ajax提交
+func ToUserAdd2(ctx *gin.Context){
+	ctx.HTML(http.StatusOK,"chapter02/user_add2.html",nil)
+}
+
+func DoUserAdd2(ctx *gin.Context) {
+	userName := ctx.PostForm("username")
+	passWord := ctx.PostForm("passWord")
+	age := ctx.PostForm("age")
+
+	fmt.Println(userName)
+	fmt.Println(passWord)
+	fmt.Println(age)
+
+	m := map[string]interface{}{
+		"code":200,
+		"msg":"添加成功~",
+	}
+
+	ctx.JSON(http.StatusOK,m)
 }
