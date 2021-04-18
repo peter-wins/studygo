@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajax文件上传页面</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@ ajax文件上传页面
    Name: <input type="text" id="name"><br>
     <input type="button" value="提交" id="btn_add">
 </form>
-
+{{/*{{urlquery "https://www.liwenzhou.com/posts/Go/go_menu/"}}}*/}}
 <script>
     var btn_upload = document.getElementById("btn_add")
     btn_upload.onclick = function (ev){
@@ -24,7 +24,7 @@ ajax文件上传页面
         form_data.append("file", $("#file")[0].files[0]);
         form_data.append("name", name);
         $.ajax({
-            url: "/do_upload3",
+            url: "/chapter02/do_upload3",
             type: "POST",
             data: form_data,
             contentType: false,
@@ -34,10 +34,8 @@ ajax文件上传页面
                 alert(data["msg"])
             },
             fail:function (data){
-
             }
         })
-
     }
 </script>
 </body>
