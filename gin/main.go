@@ -8,6 +8,10 @@ import (
 
 func main() {
 	r := gin.Default()
+	//创建日志文件,日志写入文件
+	//file, _ := os.Create("gin.log")
+	//gin.DefaultWriter = io.MultiWriter(file,os.Stdout)
+
 	r.LoadHTMLGlob("template/**/*") // 二级目录的模板指定
 	//r.LoadHTMLGlob("template/**/**/*")	// 三级目s录的模板指定
 	//r.LoadHTMLFiles("template/index.html")
